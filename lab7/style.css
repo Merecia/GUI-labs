@@ -1,0 +1,43 @@
+.page {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.wrapper {
+    position: relative;
+    border: 1px solid black;
+    min-width: 500px;
+    height: 500px;
+}
+
+.top, .bottom {
+    justify-content:space-between;
+    display: flex;
+    height: 40%;
+}
+
+.top {
+    margin-bottom: 20%;
+}
+
+.rectangle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.item {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    transform: rotateZ(-45deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: royalblue;
+}

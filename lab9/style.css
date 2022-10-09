@@ -1,0 +1,136 @@
+.page {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+}
+
+.left {
+    position: relative;
+    border: 1px solid black;
+    min-width: 500px;
+    height: 500px;
+}
+
+.left-top,
+.left-bottom {
+    justify-content: space-between;
+    display: flex;
+    height: 40%;
+}
+
+.left-top {
+    margin-bottom: 20%;
+}
+
+.rectangle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+}
+
+.item {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    transform: rotateZ(-45deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    text-align: center;
+    background-color: royalblue;
+}
+
+.block_A {
+    background-color: #880000;
+    color: white;
+}
+
+.block_B {
+    background-color: #FF0000;
+}
+
+.block_C {
+    background-color: #00FF00;
+}
+
+.block_D {
+    color: white;
+    background-color: #008800;
+}
+
+.right {
+    border-color: black;
+    border-style: solid;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 15px;
+    height: 15px;
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.green {
+    background-color: green;
+}
+
+.light-blue {
+    background-color: rgb(34, 187, 238);
+}
+
+.blue {
+    background-color: blue;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.close {
+    content: 'x';
+    cursor: pointer;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background: #ededed;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid #999;
+    font-size: 20px;
+}

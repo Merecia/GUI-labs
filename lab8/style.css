@@ -1,0 +1,63 @@
+.page {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.wrapper {
+    position: relative;
+    border: 1px solid black;
+    min-width: 500px;
+    height: 500px;
+}
+
+.top, .bottom {
+    justify-content:space-between;
+    display: flex;
+    height: 40%;
+}
+
+.top {
+    margin-bottom: 20%;
+}
+
+.rectangle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+}
+
+.item {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    transform: rotateZ(-45deg);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: royalblue;
+}
+
+.block_A {
+    background-color: #880000;
+    color: white;
+}
+
+.block_B {
+    background-color: #FF0000;
+}
+
+.block_C {
+    background-color: #00FF00;
+}
+
+.block_D {
+    color: white;
+    background-color: #008800;
+}
