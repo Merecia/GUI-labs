@@ -99,8 +99,8 @@ function dragElement(element) {
             bottom: (element.offsetTop + difference.y) + rectangleHeight,
         };
 
-			element.style.top = rectangleBorders.top + "px";
-            element.style.left = rectangleBorders.left + "px";
+		element.style.top = rectangleBorders.top + "px";
+        element.style.left = rectangleBorders.left + "px";
 			
         if (
             wrapperBorders.top <= rectangleBorders.top &&
