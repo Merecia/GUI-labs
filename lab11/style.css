@@ -38,9 +38,9 @@
 .moving {
     box-shadow: 0 -15px 10px 0 rgba(0,0,0,0.5);
     animation-name: spin;
-    /* animation-duration: 5s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
-    animation-timing-function: linear; */
+    animation-timing-function: linear;
 }   
 
 .moving__out_of_bounds {
@@ -146,8 +146,8 @@
     content: 'x';
     cursor: pointer;
     position: absolute;
-    right: -10px;
-    top: -10px;
+    left: 950px;
+    top: 35px;
     background: #ededed;
     width: 25px;
     height: 25px;

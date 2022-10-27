@@ -1,7 +1,10 @@
-const buttons = document.querySelectorAll('.button');
+const rectangles = document.querySelectorAll('.rectangle');
+const wrapper = document.querySelector('.wrapper');
+const blocks = document.querySelectorAll('.block');
+const wrapperBorders = wrapper.getBoundingClientRect();
 const centralBlock = document.querySelector('.central_block');
 const close = document.querySelector('.close');
-const wrapper = document.querySelector('.wrapper');
+const buttons = document.querySelectorAll('.button');
 
 close.addEventListener('click', () => wrapper.style.visibility = 'hidden');
 
@@ -39,33 +42,28 @@ buttons.forEach(button => {
 
 })
 
-const blocks = document.querySelectorAll('.block');
-const leftColumn = document.querySelector('.left');
-const leftColumnBorders = leftColumn.getBoundingClientRect();
+blocks.forEach(block => dragElement(block));
+dragElement(centralBlock);
 
-blocks.forEach(block => dragBlock(block));
-dragBlock(centralBlock);
+function dragElement(element) {
 
-function dragBlock(block) {
-
-    const cursorPositionBefore = { x: 0, y: 0 };
-    const cursorPositionAfter = { x: 0, y: 0 };
-    let outOfBounds = false;
+    const cursorPositionBefore = {x: 0, y: 0};
+    const cursorPositionAfter = {x: 0, y: 0};
 
     const previousPosition = {
-        top: block.getBoundingClientRect().top,
-        left: block.getBoundingClientRect().left
+        top: element.getBoundingClientRect().top,
+        left: element.getBoundingClientRect().left
     };
 
-    block.onmousedown = dragMouseDown;
+    let outOfBounds = false;
+    
+    element.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
 
-        if (block === centralBlock) block.style.transform = `rotate(0deg)`;        
+        e.target.closest('div').classList.add('moving');
 
         makeOnTop();
-
-        e.target.closest('div').classList.add('moving');
 
         cursorPositionBefore.x = e.clientX;
         cursorPositionBefore.y = e.clientY;
@@ -84,49 +82,48 @@ function dragBlock(block) {
         cursorPositionAfter.y = e.clientY;
 
         const difference = {
-            x: cursorPositionAfter.x - cursorPositionBefore.x,
+            x: cursorPositionAfter.x - cursorPositionBefore.x, 
             y: cursorPositionAfter.y - cursorPositionBefore.y
         };
 
         cursorPositionBefore.x = e.clientX;
         cursorPositionBefore.y = e.clientY;
 
-        const blockBorders = {
-            top: block.getBoundingClientRect().top + difference.y,
-            left: block.getBoundingClientRect().left + difference.x,
-            right: block.getBoundingClientRect().right + difference.x,
-            bottom: block.getBoundingClientRect().bottom + difference.y
+        const rectangleWidth = element.getBoundingClientRect().width;
+        const rectangleHeight = element.getBoundingClientRect().height;
+
+        const rectangleBorders = {
+            top: element.offsetTop + difference.y,
+            left: element.offsetLeft + difference.x,
+            right: (element.offsetLeft + difference.x) + rectangleWidth,
+            bottom: (element.offsetTop + difference.y) + rectangleHeight,
         };
 
-        block.style.top = blockBorders.top + "px";
-        block.style.left = blockBorders.left + "px";
-
+			element.style.top = rectangleBorders.top + "px";
+            element.style.left = rectangleBorders.left + "px";
+			
         if (
-            leftColumnBorders.top <= blockBorders.top &&
-            leftColumnBorders.left <= blockBorders.left &&
-            leftColumnBorders.bottom >= blockBorders.bottom &&
-            leftColumnBorders.right >= blockBorders.right
+            wrapperBorders.top <= rectangleBorders.top &&
+            wrapperBorders.left <= rectangleBorders.left &&
+            wrapperBorders.bottom >= rectangleBorders.bottom &&
+            wrapperBorders.right >= rectangleBorders.right
         ) {
             outOfBounds = false;
         } else {
             outOfBounds = true;
         }
-
+        
     }
 
     function closeDragElement(e) {
         e.target.closest('div').classList.remove('moving');
 
         if (outOfBounds) {
-            block.style.top = previousPosition.top + "px";
-            block.style.left = previousPosition.left + "px";
+            element.style.top = previousPosition.top + "px";
+            element.style.left = previousPosition.left + "px";
         } else {
-            previousPosition.top = block.getBoundingClientRect().top;
-            previousPosition.left = block.getBoundingClientRect().left;
-        }
-
-        if (block === centralBlock) {
-            block.style.transform = `rotate(-45deg)`;
+            previousPosition.top = element.getBoundingClientRect().top;
+            previousPosition.left = element.getBoundingClientRect().left;
         }
 
         document.onmouseup = null;
@@ -135,7 +132,7 @@ function dragBlock(block) {
 
     function makeOnTop() {
 
-        if (block === centralBlock) {
+        if (element === centralBlock) {
 
             centralBlock.style.zIndex = '100';
 
@@ -145,11 +142,11 @@ function dragBlock(block) {
 
             centralBlock.style.zIndex = '0';
 
-            blocks.forEach(item => {
+            blocks.forEach(block => {
 
-                if (item !== block) item.style.zIndex = '0';
+                if (block !== element) block.style.zIndex = '0';
 
-                else item.style.zIndex = '100';
+                else block.style.zIndex = '100';
 
             })
 
